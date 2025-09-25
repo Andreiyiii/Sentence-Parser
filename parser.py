@@ -34,12 +34,10 @@ parser = nltk.ChartParser(grammar)
 
 def main():
 
-    # If filename specified, read sentence from file
     if len(sys.argv) == 2:
         with open(sys.argv[1]) as f:
             s = f.read()
 
-    # Otherwise, get sentence as input
     else:
         s = input("Sentence: ")
 
@@ -67,10 +65,8 @@ def main():
 
 def preprocess(sentence):
     """
-    Convert `sentence` to a list of its words.
-    Pre-process sentence by converting all characters to lowercase
-    and removing any word that does not contain at least one alphabetic
-    character.
+    Convert sentence to a list of tokens.
+
     """
     alphabet= [chr(item) for item in range(65,91)] + [chr(item) for item in range(97,123)] 
     # print(alphabet)
@@ -89,9 +85,6 @@ def np_chunk(tree):
     whose label is "NP" that does not itself contain any other
     noun phrases as subtrees.
     """
-    # for tre in tree:
-    #     print(tre.label())
-    # print("SaSs")
     chunks=[]
     
     subtrees=tree.subtrees()
@@ -106,9 +99,6 @@ def np_chunk(tree):
                     break
             if not_unique==0:
                 chunks.append(t)        
-        # if t.subtrees():
-        #     t=t.subtrees()
-
 
     return chunks
 
